@@ -1,3 +1,3 @@
 export default interface ClientOptions {
-    uri: string
+	uri: string;
 }
