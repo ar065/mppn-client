@@ -1,11 +1,14 @@
 import ClientOptions from "../types/ClientOptions";
+import { EventEmitter } from "eventemitter3";
+import Message from "../types/messages/Message";
 
-// TODO: Emit events, duh!
-export default class Client {
+export default class Client extends EventEmitter {
 	uri: string;
 	socket: WebSocket | null;
 
 	constructor(options: ClientOptions) {
+		super();
+
 		this.uri = options.uri;
 
 		this.socket = null;
@@ -24,9 +27,18 @@ export default class Client {
 	private onerror() {}
 
 	private onmessage(event: MessageEvent) {
-		const messages = this.parseMessages(event.data);
+		const messages: Array<Message> = this.parseMessages(event.data);
 		if (messages) {
-			messages.forEach((message) => {});
+			for (const message of messages) {
+				switch (message.m) {
+					case "hi":
+						
+						break;
+				
+					default:
+						break;
+				}
+			}
 		}
 	}
 
