@@ -1,5 +1,4 @@
 import Crown from "./Crown";
-import Participant from "./Participant";
 
 export default interface ChannelInfo {
 	settings: {
@@ -18,6 +17,4 @@ export default interface ChannelInfo {
 	count: number;
 
 	crown: Crown;
-
-	ppl: Array<Participant>;
 }

@@ -57,6 +57,8 @@ export default class Client extends EventEmitter {
 		}
 	}
 
+	setParticipants(participants: Array<Participant>) {}
+
 	start() {
 		if (!this.socket) {
 			this.socket = new WebSocket(this.uri);
