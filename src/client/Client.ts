@@ -1,17 +1,39 @@
-import ClientOptions from "../types/ClientOptions";
 import { EventEmitter } from "eventemitter3";
-import Message from "../types/messages/Message";
+import AccountInfo from "../types/AccountInfo";
+import ChannelInfo from "../types/ChannelInfo";
+import ClientOptions from "../types/ClientOptions";
+import Participant from "../types/Participant";
+import ServerMessage from "../types/messages/server/SevrverMessage";
+import MessageHandler from "./MessageHandler";
 
 export default class Client extends EventEmitter {
 	uri: string;
+	token: string | undefined;
 	socket: WebSocket | null;
+
+	accountInfo: AccountInfo | null;
+	permissions: object | null;
+	participant: Participant | null;
+	connectedAt: number | null;
+	channel: ChannelInfo | null;
+
+	messageHandler: MessageHandler;
 
 	constructor(options: ClientOptions) {
 		super();
 
 		this.uri = options.uri;
+		this.token = options.token;
 
 		this.socket = null;
+
+		this.permissions = null;
+		this.accountInfo = null;
+		this.participant = null;
+		this.connectedAt = null;
+		this.channel = null;
+
+		this.messageHandler = new MessageHandler(this);
 	}
 
 	private parseMessages(data: string) {
@@ -27,18 +49,11 @@ export default class Client extends EventEmitter {
 	private onerror() {}
 
 	private onmessage(event: MessageEvent) {
-		const messages: Array<Message> = this.parseMessages(event.data);
+		const messages: Array<ServerMessage> = this.parseMessages(event.data);
 		if (messages) {
-			for (const message of messages) {
-				switch (message.m) {
-					case "hi":
-						
-						break;
-				
-					default:
-						break;
-				}
-			}
+			this.messageHandler.handleMessages(messages);
+		} else {
+			this.emit("parsingError", event.data);
 		}
 	}
 
