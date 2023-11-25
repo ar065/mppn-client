@@ -1,17 +1,17 @@
 {
-	"name": "mppn-client",
-	"module": "index.ts",
-	"type": "module",
-	"scripts": {
-		"build": "bun ./scripts/build.ts"
-	},
-	"devDependencies": {
-		"bun-types": "latest"
-	},
-	"peerDependencies": {
-		"typescript": "^5.0.0"
-	},
-	"dependencies": {
-		"eventemitter3": "^5.0.1"
-	}
+  "name": "mppn-client",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "bun ./scripts/build.ts"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "eventemitter3": "^5.0.1"
+  }
 }
