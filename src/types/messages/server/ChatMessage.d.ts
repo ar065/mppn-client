@@ -5,7 +5,6 @@ export default interface ChatMessage extends Message {
 	m: "a";
 
 	id: string;
-
 	t: number;
 	a: string;
 	p: Participant;

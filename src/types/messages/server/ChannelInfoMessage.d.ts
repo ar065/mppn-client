@@ -6,7 +6,7 @@ export default interface ChannelInfoMessage extends Message {
 	m: "ch";
 
 	ch: ChannelInfo;
-
 	ppl: Array<Participant>;
+
 	p?: string;
 }
