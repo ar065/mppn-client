@@ -10,7 +10,7 @@ import MouseMessage from "./MouseMessage";
 import NoteMessage from "./NoteMessage";
 import NotequotaMessage from "./NotequotaMessage";
 import NotificationMessage from "./NotificationMessage";
-import ParticipantAdded from "./ParticipantAdded";
+import ParticipantAdded from "./ParticipantAddedMessage";
 import PongMessage from "./PongMessage";
 import RoomListMessage from "./RoomListMessage";
 

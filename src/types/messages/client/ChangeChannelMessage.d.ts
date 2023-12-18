@@ -5,5 +5,6 @@ export default interface ChangeChannelMessage extends Message {
 	m: "ch";
 
 	_id: string;
-	set: ChannelSettings;
+
+	set?: ChannelSettings;
 }

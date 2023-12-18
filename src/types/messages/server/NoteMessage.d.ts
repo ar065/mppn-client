@@ -5,6 +5,6 @@ export default interface NoteMessage extends Message {
 	m: "n";
 
 	t: number;
-	n: Array<Note>;
+	n: Note[];
 	p: string;
 }
