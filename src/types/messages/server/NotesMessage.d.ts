@@ -1,10 +1,10 @@
 import Note from "../../Note";
 import Message from "./Message";
 
-export default interface NoteMessage extends Message {
+export default interface NotesMessage extends Message {
 	m: "n";
-	t: number;
 
-	n: Array<Note>;
+	t: number;
+	n: Note[];
 	p: string;
 }

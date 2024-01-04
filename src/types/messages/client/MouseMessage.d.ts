@@ -1,7 +1,7 @@
 import Message from "./Message";
 
 export default interface MouseMessage extends Message, Position {
-	m: "m";
+    m: "m";
 
-	id: string;
+    id: string;
 }

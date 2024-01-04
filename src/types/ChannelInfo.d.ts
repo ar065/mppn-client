@@ -15,6 +15,5 @@ export default interface ChannelInfo {
 	_id: string;
 	id: string;
 	count: number;
-
 	crown: Crown;
 }

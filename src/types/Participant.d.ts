@@ -6,13 +6,11 @@ export default interface Participant extends Position {
 	_id: string;
 	name: string;
 	color: string;
-
 	afk: boolean;
 
 	tag?: Tag;
 	vanished?: boolean;
 
-	// Og server
 	codename?: string;
 	motd?: string;
 	v?: string;
