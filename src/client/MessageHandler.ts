@@ -10,7 +10,7 @@ export default class MessageHandler {
 		this.client = client;
 	}
 
-	#handleHi(message: HiMessage) {
+	private handleHi(message: HiMessage) {
 		this.client.participant = message.u;
 		this.client.connectedAt = message.t;
 
@@ -19,7 +19,7 @@ export default class MessageHandler {
 		if (message.token) this.client.token = message.token;
 	}
 
-	#handleChannelInfo(message: ChannelInfoMessage) {
+	private handleChannelInfo(message: ChannelInfoMessage) {
 		this.client.channel = message.ch;
 
 		if (message.p) {
@@ -41,10 +41,10 @@ export default class MessageHandler {
 		for (const message of messages) {
 			switch (message.m) {
 				case "hi":
-					this.#handleHi(message);
+					this.handleHi(message);
 					break;
 				case "ch":
-					this.#handleChannelInfo(message);
+					this.handleChannelInfo(message);
 					break;
 				default:
 					this.client.emit("unsupportedMessageType", message);
