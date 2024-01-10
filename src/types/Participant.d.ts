@@ -10,8 +10,4 @@ export default interface Participant extends Position {
 
 	tag?: Tag;
 	vanished?: boolean;
-
-	codename?: string;
-	motd?: string;
-	v?: string;
 }

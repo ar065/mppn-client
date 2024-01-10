@@ -9,6 +9,8 @@ import MessageHandler from "./MessageHandler";
 export default class Client extends EventEmitter {
 	uri: string;
 	token: string | undefined;
+	reconnectDelay: number;
+
 	socket: WebSocket | null;
 
 	accountInfo: AccountInfo | null;
@@ -21,11 +23,14 @@ export default class Client extends EventEmitter {
 
 	messageHandler: MessageHandler;
 
+	reconnectTimeout: NodeJS.Timeout | undefined;
+
 	constructor(options: ClientOptions) {
 		super();
 
 		this.uri = options.uri;
 		this.token = options.token;
+		this.reconnectDelay = options.reconnectDelay || 1000;
 
 		this.socket = null;
 
@@ -49,13 +54,18 @@ export default class Client extends EventEmitter {
 	}
 
 	// TODO
-	private onopen() { }
+	private onopen() {}
 	// TODO
-	private onclose() { }
+	private onclose() {
+		this.reconnectTimeout = setTimeout(() => {
+			this.start();
+		}, this.reconnectDelay);
+	}
 	// TODO
-	private onerror() { }
+	private onerror() {}
 
 	// NOTE: Possibly emit all messages so people can make scripts easier...?
+	// NOTE: Maybe make it an optional thing that has to be enabled by script developers?
 	private onmessage(event: MessageEvent) {
 		const messages: Array<ServerMessage> = this.parseMessages(event.data);
 		if (messages) {
@@ -66,7 +76,7 @@ export default class Client extends EventEmitter {
 	}
 
 	// TODO
-	setParticipants(participants: Array<Participant>) { }
+	setParticipants(participants: Array<Participant>) {}
 
 	start() {
 		if (!this.socket) {
@@ -74,7 +84,9 @@ export default class Client extends EventEmitter {
 			this.socket.binaryType = "arraybuffer";
 			this.socket.onopen = this.onopen;
 			this.socket.onclose = this.onclose;
-			this.socket.onerror = this.onerror;
+			this.socket.onerror = (ev) => {
+				console.log(ev);
+			};
 			this.socket.onmessage = this.onmessage;
 		}
 	}

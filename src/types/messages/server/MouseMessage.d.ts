@@ -1,3 +1,4 @@
+import Position from "../../Position";
 import Message from "./Message";
 
 export default interface MouseMessage extends Message, Position {

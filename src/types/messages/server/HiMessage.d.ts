@@ -11,4 +11,8 @@ export default interface HiMessage extends Message {
 	permissions?: object;
 	token?: string;
 	accountInfo?: AccountInfo;
+
+	codename?: string;
+	motd?: string;
+	v?: string;
 }

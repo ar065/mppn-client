@@ -1,14 +1,14 @@
+import Storage from "../Storage";
+import ClientHiMessage from "../types/messages/client/HiMessage";
 import AntiBotMessage from "../types/messages/server/AntibotMessage";
+import ByeMessage from "../types/messages/server/ByeMessage";
 import ChannelInfoMessage from "../types/messages/server/ChannelInfoMessage";
 import ServerHiMessage from "../types/messages/server/HiMessage";
-import ClientHiMessage from "../types/messages/client/HiMessage";
+import MouseMessage from "../types/messages/server/MouseMessage";
 import ParticipantUpdateMessage from "../types/messages/server/ParticipantUpdateMessage";
+import PongMessage from "../types/messages/server/PongMessage";
 import ServerMessage from "../types/messages/server/SevrverMessage";
 import Client from "./Client";
-import Storage from "../Storage"
-import PongMessage from "../types/messages/server/PongMessage";
-import MouseMessage from "../types/messages/server/MouseMessage";
-import ByeMessage from "../types/messages/server/ByeMessage";
 
 export default class MessageHandler {
 	client: Client;
@@ -38,6 +38,8 @@ export default class MessageHandler {
 	// TODO
 	private handlePongMessage(message: PongMessage) {
 		// NOTE: Receive server time in here
+		const time = message.t;
+		const echo = message.e;
 	}
 
 	private handleChannelInfoMessage(message: ChannelInfoMessage) {
@@ -59,13 +61,21 @@ export default class MessageHandler {
 	}
 
 	// TODO
-	private handleParticipantUpdateMessage(message: ParticipantUpdateMessage) { }
+	private handleParticipantUpdateMessage(message: ParticipantUpdateMessage) {
+		// message.
+	}
 
 	// TODO
-	private handleMouseMessage(message: MouseMessage) { }
+	private handleMouseMessage(message: MouseMessage) {
+		const x = message.x;
+		const y = message.y;
+		const id = message.id;
+	}
 
 	// TODO
-	private handleByeMessage(message: ByeMessage) { }
+	private handleByeMessage(message: ByeMessage) {
+		const participant = message.p;
+	}
 
 	private handleAntiBotMessage(message: AntiBotMessage) {
 		const code = message.code;
