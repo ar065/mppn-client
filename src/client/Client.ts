@@ -17,6 +17,8 @@ export default class Client extends EventEmitter {
 	connectedAt: number | null;
 	channel: ChannelInfo | null;
 
+	loginInfo: object | null;
+
 	messageHandler: MessageHandler;
 
 	constructor(options: ClientOptions) {
@@ -33,6 +35,8 @@ export default class Client extends EventEmitter {
 		this.connectedAt = null;
 		this.channel = null;
 
+		this.loginInfo = null;
+
 		this.messageHandler = new MessageHandler(this);
 	}
 
@@ -44,10 +48,14 @@ export default class Client extends EventEmitter {
 		}
 	}
 
-	private onopen() {}
-	private onclose() {}
-	private onerror() {}
+	// TODO
+	private onopen() { }
+	// TODO
+	private onclose() { }
+	// TODO
+	private onerror() { }
 
+	// NOTE: Possibly emit all messages so people can make scripts easier...?
 	private onmessage(event: MessageEvent) {
 		const messages: Array<ServerMessage> = this.parseMessages(event.data);
 		if (messages) {
@@ -57,7 +65,8 @@ export default class Client extends EventEmitter {
 		}
 	}
 
-	setParticipants(participants: Array<Participant>) {}
+	// TODO
+	setParticipants(participants: Array<Participant>) { }
 
 	start() {
 		if (!this.socket) {
